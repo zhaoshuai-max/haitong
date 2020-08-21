@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+    <title>主页</title>
+
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+
+    <link rel="shortcut icon" th:href="favicon.ico">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/css/animate.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-table.css}">
+</head>
+
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+<!--添加项目-->
+<button type="button" class="btn btn-success" onclick="projectAdd()">添加项目</button>
+<!--<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingTwo">
+            <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    条件查询
+                </a>
+            </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+                <form method="post" class="form-horizontal" action="#">
+                    <div class="form-group">
+                        <label for="province" class="col-sm-2 control-label">所在省</label>
+                        <div class="col-sm-2">
+                            <select class="form-control" id="province" name="province">
+                                <option value="">===请选择====</option>
+                            </select>
+                        </div>
+                        &lt;!&ndash;</div>&ndash;&gt;
+                        &lt;!&ndash; 2.市 &ndash;&gt;
+                        &lt;!&ndash;<div class="form-group">&ndash;&gt;
+                        <label for="city" class="col-sm-2 control-label">所在市</label>
+                        <div class="col-sm-2">
+                            <select class="form-control" id="city" name="city">
+                                <option value="">===请选择====</option>
+                            </select>
+                        </div>
+                        &lt;!&ndash; </div>&ndash;&gt;
+                        &lt;!&ndash; 3.区县 &ndash;&gt;
+                        &lt;!&ndash;<div class="form-group">&ndash;&gt;
+                        <label for="area" class="col-sm-2 control-label">所在区（县）</label>
+                        <div class="col-sm-2">
+                            <select class="form-control" id="area" name="area">
+                                <option value="">===请选择====</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">方式:</label>
+                        <div class="col-sm-10" id="rent_mode">
+                            <input type="radio" name="rent_mode" value="">不限
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">价格:</label>
+
+                        <div class="col-sm-8" id="rental">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">户型:</label>
+
+                        <div class="col-sm-10" id="house_type">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">朝向:</label>
+
+                        <div class="col-sm-10" id="orient">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-2">
+                            <button class="btn btn-primary" type="button" onclick="queryTj()">查询</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>-->
+<table id="data"></table>
+<!-- 项目添加模态框 -->
+<!-- Modal -->
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+    <div class="modal-dialog" style="z-index: 2041">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form class="form-horizontal" role="form"
+                      th:action="@{/record/record_add}"
+                      method="post" style="height: 500px;">
+                    <!-- 1.项目编号 -->
+                    <div class="form-group">
+                        <label for="projectId" class="col-sm-2 control-label">项目编号</label>
+                        <div class="col-sm-6 input-group">
+                            <input type="text" class="form-control" id="projectId"
+                                   name="projectId"
+                                   placeholder="项目编号" required>
+                        </div>
+                    </div>
+                    <!-- 2.项目名称 -->
+                    <div class="form-group">
+                        <label for="projectName" class="col-sm-2 control-label">项目名称</label>
+                        <div class="col-sm-6 input-group">
+                            <input type="text" class="form-control" id="projectName" name="projectName"
+                                   placeholder="项目名称" required>
+                        </div>
+                    </div>
+                    <!-- 3.创建人 -->
+                    <div class="form-group">
+                        <label for="creator" class="col-sm-2 control-label">创建人</label>
+                        <div class="col-sm-6 input-group">
+                            <input type="text" class="form-control" id="creator"
+                                   name="creator"
+                                   placeholder="创建人" required>
+                        </div>
+                    </div>
+                    <!-- 4.商务负责人 -->
+                    <div class="form-group">
+                        <label for="commercialDirector" class="col-sm-2 control-label">商务负责人</label>
+                        <div class="col-sm-6 input-group">
+                            <input type="text" class="form-control" id="commercialDirector"
+                                   name="commercialDirector"
+                                   placeholder="商务负责人" required>
+                        </div>
+                    </div>
+                    <!-- 5.客户名称 -->
+                    <div class="form-group">
+                        <label for="customerName" class="col-sm-2 control-label">客户名称</label>
+                        <div class="col-sm-6 input-group">
+                            <input type="text" class="form-control" id="customerName"
+                                   name="customerName"
+                                   placeholder="客户名称" required>
+                        </div>
+                    </div>
+                    <!-- 6.客户联系人 -->
+                    <div class="form-group">
+                        <label for="customerContact" class="col-sm-2 control-label">客户联系人</label>
+                        <div class="col-sm-6 input-group">
+                            <input type="text" class="form-control" id="customerContact"
+                                   name="customerContact"
+                                   placeholder="客户联系人" required>
+                        </div>
+                    </div>
+                    <!-- 7.项目经理 -->
+                    <div class="form-group">
+                        <label for="projectManager" class="col-sm-2 control-label">项目经理</label>
+                        <div class="col-sm-6 input-group">
+                            <input type="text" class="form-control" id="projectManager"
+                                   name="projectManager"
+                                   placeholder="项目经理" required>
+                        </div>
+                    </div>
+                    <!-- 8.备注 -->
+                    <div class="form-group">
+                        <label for="remarks" class="col-sm-2 control-label">备注</label>
+                        <div class="col-sm-6 input-group">
+                            <input type="text" class="form-control" id="remarks"
+                                   name="remarks"
+                                   placeholder="备注" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-6">
+                            <button type="submit" class="btn btn-primary">更新</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- 全局js -->
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+<script th:src="@{/js/plugins/layer/layer.min.js}"></script>
+<script th:src="@{/js/bootstrap-table.js}"></script>
+<script th:src="@{/js/bootstrap-table-zh-CN.js}"></script>
+<!-- 第三方插件 -->
+<script th:src="@{/js/plugins/pace/pace.min.js}"></script>
+<script th:inline="javascript">
+    const path = [[${#request.getContextPath()}]];
+    function projectAdd() {
+        $("#updateModal").modal("show");
+    }
+    $(function () {
+        Et.queryList();
+    })
+    let Et={
+        queryList:function () {
+            $("#data").bootstrapTable({
+                url:path+'/record/record_list',
+                pagination:true,
+                sidePagination:'server',
+                pageNumber:1,
+                pageSize:4,
+                pageList:[5,6,7,8],
+                queryParamsType:'undefined',
+                paginationPreText:'上一页',
+                paginationNextText:'下一页',
+                queryParams:function (params) {
+                    let newParam ={
+                        pageNumber:params.pageNumber,
+                        pageSize:params.pageSize,
+                    }
+                    start = (params.pageNumber-1)*params.pageSize;
+                    console.log(newParam);
+                    return newParam;
+                },
+                columns:[
+                    {field:'id',title:'id',formatter:function (value,row,index) {
+                        return index+start+1;
+                    }},
+                    {field:'projectId',title:'项目编码'},
+                    {field:'projectName',title:'项目名称'},
+                    {field:'creator',title:'创建人'},
+                    {field:'commercialDirector',title:'商务负责人'},
+                    {field:'customerName',title:'客户名称'},
+                    {field:'customerContact',title:'客户联系人'},
+                    {field:'projectManager',title:'项目经理'},
+                    {field:'remarks',title:'备注'},
+                    {field:'time',title:'发布时间'},
+                    {title:'操作',formatter:function (value,row,index) {
+                        let update ="<button type='button' class='btn btn-success' id='updateBtn'>更新</button>";
+                        let del ="<button type='button' class='btn btn-success' id='delBtn'>删除</button>";
+                        return update + " | " +del;
+
+                    },events: houseEvent
+                    },
+
+                ]
+
+            });
+        },
+    }
+    window.houseEvent ={
+        'click #delBtn':function (event,value,row,index) {
+            console.log(row.id+"id");
+            let deleteAction = path+'/house/'+row.id;
+            $("#delForm").attr('action',deleteAction).submit();
+
+
+        },
+        'click #updateBtn':function (event,value,row,index) {
+            $("#houseId").val(row.id);
+            $("#updateModal").modal("show");
+            $("#update_rent_mode").val(row.rentMode);
+            $("#update_rental").val(row.rental);
+            $("#update_house_type").val(row.houseType);
+            $("#update_orient").val(row.orient);
+            $("#address").val(row.address);
+
+            $("#update_province").val(row.province);
+
+            Et.queryArea(row.province,'update_city');
+            $("#update_city").val(row.city);
+            Et.queryArea(row.city,'update_area');
+            $("#update_area").val(row.area);
+        },
+    }
+
+</script>
+
+</body>
+
+</html>

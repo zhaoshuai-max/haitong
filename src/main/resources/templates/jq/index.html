@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>首页</title>
+<link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">导航</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+    <li class="navbar-brand">欢迎回来：</li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">操作<span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a th:href="@{/jq/logout}">退出</a></li>
+		</ul>
+	  </li>
+	</ul>
+  </div>
+</nav>
+
+<!-- 菜单 -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <div class="list-group" id="va">
+        <a th:href="@{/to/to_gp}" target="et1908" class="list-group-item" id="a1" >购票数量最多</a>
+        <a th:href="@{/to/to_sc}" target="et1908" class="list-group-item" id="a2" >收藏最多</a>
+        <a th:href="@{/to/to_rq}" target="et1908" class="list-group-item" id="a3" >三个月内适合游玩</a>
+        <a th:href="@{/to/to_tc}" target="et1908" class="list-group-item" id="a4" >同城</a>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <iframe name="et1908" frameborder="0" width="100%" height="1000px"></iframe>
+    </div>
+  </div>
+</div>
+	<script th:src="@{/js/jquery/jquery.min.js}"></script>
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script th:inline="javascript">
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.haitong.rector.mapper.RectorMapper">
+    <select id="queryRectorList" resultType="projectrecord" >
+        select id,
+        project_id as projectId,
+        project_name as projectName,
+        creator,
+        commercial_director as commercialDirector,
+        customer_name as customerName,
+        customer_contact as customerContact,
+        project_manager as projectManager,
+        project_status as projectStatus,
+        remarks,
+        time from project_record
+
+    </select>
+    <insert id="addRecord" parameterType="ProjectRecord">
+        INSERT INTO project_record (
+        project_id,
+        project_name,
+        creator,
+        commercial_director,
+        customer_name,
+        customer_contact,
+        project_manager,
+        project_status,
+        remarks,
+        time
+        ) VALUES (
+        #{projectId},
+        #{projectName},
+        #{creator},
+        #{commercialDirector},
+        #{customerName},
+        #{customerContact},
+        #{projectManager},
+        '0',
+        #{remarks},
+        NOW()
+        )
+    </insert>
+
+</mapper>

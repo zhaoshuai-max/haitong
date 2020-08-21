@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+    <title>主页</title>
+
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+
+    <link rel="shortcut icon" th:href="favicon.ico">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/css/animate.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <style>
+        .side-nav-item {
+            display: block;
+            padding: 8px 11px 8px 11px;
+            background-color: #FFFFFF;
+            cursor: pointer;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+            -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+        }
+        .item-title {
+            background-color: #F5F5F5;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            border-bottom: 1px solid #DDDDDD;
+        }
+        .panel-heading {
+            margin-top: 5px;
+            padding: 0;
+            border-radius: 3px;
+            border: 1px solid transparent;
+            border-color: #DDDDDD;
+        }
+        .item-body {
+            padding: 3px 5px 1px 5px;
+            border-bottom: 1px solid #DDDDDD;
+        }
+        .item-second {
+            margin-top: 5px;
+            cursor: pointer;
+        }
+        .item-second a {
+            display: block;
+            height: 100%;
+            width: 100%;
+        }
+        .at{ color:red;}
+    </style>
+</head>
+
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+<nav class="navbar navbar-inverse container-fluid" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">海通OA后台管理</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">更多 <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">个人信息</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">登录</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="col-md-2 side-nav" style="height: auto">
+
+    <div class="panel-group" id="accordion">
+        <!--//首页面-->
+        <div class="panel-heading panel">
+            <a th:href="@{/to/to_index} " target="gotourl" class="side-nav-item item-title">
+                首页面
+            </a>
+            <div class="item-body collapse" id='index'>
+            </div>
+        </div>
+        <!--  我的工作-->
+        <div class="panel-heading panel">
+            <a href="index.html" class="side-nav-item item-title" target="gotourl">
+                我的工作
+            </a>
+            <div class="item-body collapse" id='mywork'>
+            </div>
+        </div>
+        <!--项目管理-->
+        <div class="panel-heading panel">
+            <a th:href="@{/to/to_record} " target="gotourl" class="side-nav-item item-title">
+                项目管理
+            </a>
+            <div class="item-body collapse" id='projectrecord'>
+            </div>
+        </div>
+          <!--项目团队管理-->
+        <div class="panel-heading panel">
+            <a data-toggle="collapse" data-parent="#accordion" href="#item-caiwu" id="headcaiwu" class="side-nav-item item-title collapsed">
+                项目团队管理
+            </a>
+            <div id="item-caiwu" class="panel-collapse collapse">
+                <div class="item-body">
+                    <ul class="list-unstyled">
+                        <li class="item-second" id='ersonmaintain'><a href="a.html" target="gotourl">人员维护</a></li>
+                        <li class="item-second" id='teamlist'><a href="b.html" target="gotourl">团队清单</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--资金管理-->
+        <div class="panel-heading panel">
+            <a data-toggle="collapse" data-parent="#accordion" href="#funds-pull" id="funds-management" class="side-nav-item item-title">
+                资金管理
+            </a>
+            <div id="funds-pull" class="panel-collapse collapse">
+                <div class="item-body">
+                    <ul class="list-unstyled">
+                        <li class="item-second" id='fundsprojectlist'><a href="a.html" target="gotourl">项目清单</a></li>
+                        <li class="item-second" id='projectaccounting'><a href="b.html" target="gotourl">项目建账</a></li>
+                        <li class="item-second" id='paymenthistory'><a href="c.html" target="gotourl">回款记录</a></li>
+                        <li class="item-second" id='receivable'><a href="c.html" target="gotourl">应收</a></li>
+                        <li class="item-second" id='copewith'><a href="c.html" target="gotourl">应付</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--费用管理-->
+        <div class="panel-heading panel">
+            <a data-toggle="collapse" data-parent="#accordion" href="#expense-pull" id="expense-management" class="side-nav-item item-title">
+                费用管理
+            </a>
+            <div id="expense-pull" class="panel-collapse collapse">
+                <div class="item-body">
+                    <ul class="list-unstyled">
+                        <li class="item-second" id='a'><a href="a.html" target="gotourl">我的报销</a></li>
+                        <li class="item-second" id='b'><a href="b.html" target="gotourl">报销单录入</a></li>
+                        <li class="item-second" id='c'><a href="c.html" target="gotourl">报销结果</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--报销审批-->
+        <div class="panel-heading panel">
+            <a data-toggle="collapse" data-parent="#accordion" href="#claim-pull" id="claim-expense" class="side-nav-item item-title">
+                报销审批
+            </a>
+            <div id="claim-pull" class="panel-collapse collapse">
+                <div class="item-body">
+                    <ul class="list-unstyled">
+                        <li class="item-second" id='d'><a href="a.html" target="gotourl">报销清单</a></li>
+                        <li class="item-second" id='e'><a href="b.html" target="gotourl">报销单审批</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--财务审核-->
+        <div class="panel-heading panel">
+            <a data-toggle="collapse" data-parent="#accordion" href="#financial-pull" id="financial-audit" class="side-nav-item item-title">
+                财务审核
+            </a>
+            <div id="financial-pull" class="panel-collapse collapse">
+                <div class="item-body">
+                    <ul class="list-unstyled">
+                        <li class="item-second" id='g'><a href="a.html" target="gotourl">报销清单</a></li>
+                        <li class="item-second" id='h'><a href="b.html" target="gotourl">报销单审批</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--统计分析-->
+        <div class="panel-heading panel">
+            <a data-toggle="collapse" data-parent="#accordion" href="#statistic-pull" id="statistic-analysis" class="side-nav-item item-title">
+                统计分析
+            </a>
+            <div id="statistic-pull" class="panel-collapse collapse">
+                <div class="item-body">
+                    <ul class="list-unstyled">
+                        <li class="item-second" id='1'><a href="a.html" target="gotourl">项目收付款分析</a></li>
+                        <li class="item-second" id='2'><a href="b.html" target="gotourl">项目费用分析</a></li>
+                        <li class="item-second" id='3'><a href="c.html" target="gotourl">人员费用分析</a></li>
+                        <li class="item-second" id='4'><a href="c.html" target="gotourl">利润分析</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+         <!--系统管理-->
+        <div class="panel-heading panel">
+            <a data-toggle="collapse" data-parent="#accordion" href="#system-pull" id="system-management" class="side-nav-item item-title">
+                系统管理
+            </a>
+            <div id="system-pull" class="panel-collapse collapse">
+                <div class="item-body">
+                    <ul class="list-unstyled">
+                        <li class="item-second" id='11'><a href="a.html" target="gotourl">部门管理</a></li>
+                        <li class="item-second" id='21'><a href="b.html" target="gotourl">人员管理</a></li>
+                        <li class="item-second" id='31'><a href="c.html" target="gotourl">角色管理</a></li>
+                        <li class="item-second" id='41'><a href="c.html" target="gotourl">权限管理</a></li>
+                        <li class="item-second" id='51'><a href="c.html" target="gotourl">菜单管理</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-10 side-nav" style="height: auto" >
+        <iframe name="gotourl" frameborder="0" width="100%" height="1000px"></iframe>
+</div>
+
+<!-- 全局js -->
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+<script th:src="@{/js/plugins/layer/layer.min.js}"></script>
+
+<!-- 第三方插件 -->
+<script th:src="@{/js/plugins/pace/pace.min.js}"></script>
+<script>
+    $(document).ready(function(){
+        var path=window.location.pathname;  //先得到地址栏内容
+        var regExp=/[\/\.\?]+/;
+        str=path.split(regExp);
+        var node=str.slice(-2,-1);   //截取地址栏信息得到文件名
+       /* $('#'+node+' a').addClass('at');  //提前写好对应的id,菜单加亮*/
+        $('#'+node).parent().parent().parent().addClass('in'); //id父级的父级的父级添加展开class
+    })
+
+
+</script>
+
+</body>
+
+</html>
